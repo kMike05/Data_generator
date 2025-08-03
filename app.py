@@ -167,12 +167,12 @@ def choose_high_school_state_city():
     state = CITY_TO_STATE[city]
     schools = CITY_HIGH_SCHOOLS.get(city, FALLBACK_HIGH_SCHOOLS.get("Generic City"))
     school = random.choice(schools)
-    return f"{school}, {state}", state, city
+    return f"{school}, {city}", state, city
 
 def generate_address_with_real_zip(city, state):
     zip_code = fetch_zip_for_city_state(city, state)
     street = fake.street_address()
-    return str(zip_code or "")
+    return zip_code if zip_code else ""
 
 
 def generate_phone_number_from_state_city(state, city=None):

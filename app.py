@@ -172,7 +172,8 @@ def choose_high_school_state_city():
 def generate_address_with_real_zip(city, state):
     zip_code = fetch_zip_for_city_state(city, state)
     street = fake.street_address()
-    return f"{street}, {city}, {state} {zip_code or ''}"
+    return str(zip_code or "")
+
 
 def generate_phone_number_from_state_city(state, city=None):
     if city and city in CITY_AREA_CODES and CITY_AREA_CODES[city]:
@@ -191,7 +192,7 @@ def generate_demographic_profile(gender):
         "Name": name,
         "Phone Number": phone,
         "Date of Birth": generate_birth_date_2010().strftime("%Y-%m-%d"),
-        "Address": address,
+        "Zip Code": address,
         "High School": high_school_full,
     }
 

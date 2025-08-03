@@ -1,0 +1,22 @@
+Atlanta:404,470,678,770
+Boston:617,857
+Buffalo:716
+Charlotte:704,980
+Chicago:312,773,872
+Dallas:214,469,972
+Denver:303,720
+Detroit:313,734
+Houston:281,346,713,832
+Kansas City:816,913
+Los Angeles:213,310,323,424,562,626,747,818,909
+Manassas:571,703
+McAllen:956
+Miami:305,786
+Nashville:615,629
+New York:212,332,347,646,718,917,929
+Omaha:402,531
+Phoenix:480,602,623,928
+Salt Lake City:385,801
+San Francisco:415,628
+St. Louis:314,557,636
+Seattle:206,253,360,425,564

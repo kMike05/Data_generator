@@ -1,0 +1,87 @@
+Atlanta:Midtown High School
+        Carver High School
+        North Atlanta High School
+
+Boston:Boston International High School
+              Cathedral High School
+              Fenway High School
+
+Buffalo:Riverside High School
+         McKinley High School
+         Canisius High School
+    
+Charlotte:Myers Park High School
+               West Charlotte High School
+               Providence High School
+
+Chicago:Amundsen High School
+         Chicago Academy High School
+         Lincoln Park High School
+
+Dallas:James Madison High School
+      Skyline High School
+      Highland Park High School 
+     
+Denver: Northfield High School
+          Denver South High School
+          Denver East High School
+
+Detroit: Cass Technical High School
+          Central High School
+          Renaissance High School
+
+Houston: Worthing High School
+       Eastwood Academy High School
+       Carnegie Vanguard High School
+
+Kansas City:Central High School
+         East High School
+         Northeast High School
+
+Los Angeles: Los Angeles High School
+            Bernstein High School
+            Cathedral High School
+
+Manassas:  Unity Reed High School
+           Osbourn Park High School
+           Manassas Park High School
+
+McAllen:  Rowe High School
+          McAllen Memorial High School
+          McAllen High School
+
+Miami:  Green Springs High School
+        Miami Senior High School
+        Coral Reef High School
+
+Nashville: East Nashville High School
+           Hillsboro High School 
+           McGavock High School
+
+New York: Stuyvesant High School
+          Eleanor Roosevelt High School
+          Xavier High School
+
+Omaha: Burke High School
+       Millard South High School
+       Benson High School
+
+Phoenix: Arcadia High School
+        Moon Valley High School
+        West Phoenix High School
+
+Salt Lake City: Brighton High School
+                Granger High School
+                Skyline High School
+
+San Francisco:  Downtown High School
+                Abraham Lincoln High School
+                Lowell High School
+           
+St. Louis: Vashon High School
+           Sumner High School
+           Clayton High School
+
+Seattle:Franklin High School
+        Garfield High School
+        Roosevelt High School

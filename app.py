@@ -198,6 +198,8 @@ def generate_demographic_profile(gender):
         "Name": name,
         "Phone Number": phone,
         "Date of Birth": generate_birth_date_2010().strftime("%Y-%m-%d"),
+        "State": state,
+        "City": city,
         "Zip Code": address,
         "High School": high_school_full,
     }
@@ -205,6 +207,19 @@ def generate_demographic_profile(gender):
 def convert_to_csv(profiles_df):
     output = io.StringIO()
     profiles_df.to_csv(output, index=False)
+    return output.getvalue()
+
+def convert_to_txt(profiles_df):
+    output = io.StringIO()
+    for idx, row in profiles_df.iterrows():
+        output.write(f"{idx+1}.\n")
+        output.write(f"   Name: {row['Name']}\n")
+        output.write(f"   Phone Number: {row['Phone Number']}\n")
+        output.write(f"   Date of Birth: {row['Date of Birth']}\n")
+        output.write(f"   State: {row['State']}\n")
+        output.write(f"   City: {row['City']}\n")
+        output.write(f"   Zip Code: {row['Zip Code']}\n")
+        output.write(f"   High School: {row['High School']}\n\n")
     return output.getvalue()
 
 # ---------------- Streamlit UI ----------------
@@ -219,6 +234,7 @@ def run_streamlit_app():
     generated_for = st.sidebar.text_input("Who are you generating this data for?", placeholder="Enter name")
     gender = st.sidebar.radio("Select Gender:", ["Male", "Female"])
     num_records = st.sidebar.number_input("Number of profiles:", min_value=1, max_value=10000, value=10, step=1)
+    file_format = st.sidebar.selectbox("Select file format:", ["CSV", "TXT"])
     generate_button = st.sidebar.button("🎲 Generate Profiles", type="primary")
 
     if generate_button:
@@ -242,13 +258,24 @@ def run_streamlit_app():
         st.success(f"✅ Generated {num_records} profiles for {generated_for}")
         st.dataframe(df, use_container_width=True)
 
-        csv_data = convert_to_csv(df)
-        st.download_button(
-            "📥 Download as CSV",
-            csv_data,
-            f"{generated_for.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
-            "text/csv"
-        )
+        if file_format == "CSV/TXT":
+            csv_data = convert_to_csv(df)
+            st.download_button(
+                "📥 Download as CSV",
+                csv_data,
+                f"{generated_for.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                "text/csv"
+            )
+
+           
+        else:  # TSV
+            txt_data = convert_to_txt(df)
+            st.download_button(
+                "📄 Download as TXT",
+                txt_data,
+                f"{generated_for.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
+                "text/plain"
+            )
 
 # ---------------- CLI Bare Mode ----------------
 def run_bare_mode():

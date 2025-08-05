@@ -151,7 +151,9 @@ def fetch_zip_for_city_state(city, state):
 # ---------------- Generators ----------------
 def generate_name(gender):
     while True:
-        name = fake.name_male() if gender == "Male" else fake.name_female()
+        first = fake.first_name_male() if gender == "Male" else fake.first_name_female()
+        last = fake.last_name()
+        name = f"{first} {last}"
         if name not in used_names:
             used_names.add(name)
             save_new_names([name])
@@ -163,7 +165,7 @@ def generate_birth_date_2010():
     return start_date + timedelta(days=random.randrange((end_date - start_date).days))
 
 def choose_high_school_state_city():
-    city = random.choice(list(CITY_TO_STATE.keys()))
+    city = get_next_city()
     state = CITY_TO_STATE[city]
     schools = CITY_HIGH_SCHOOLS.get(city, FALLBACK_HIGH_SCHOOLS.get("Generic City"))
     school = random.choice(schools)
@@ -171,8 +173,11 @@ def choose_high_school_state_city():
 
 def generate_address_with_real_zip(city, state):
     zip_code = fetch_zip_for_city_state(city, state)
-    street = fake.street_address()
-    return zip_code if zip_code else ""
+    if not zip_code:
+        # Fallback: generate a random 5-digit ZIP code
+        zip_code = f"{random.randint(10000, 99999)}"
+    return zip_code
+
 
 
 def generate_phone_number_from_state_city(state, city=None):
@@ -181,7 +186,8 @@ def generate_phone_number_from_state_city(state, city=None):
     else:
         area_codes = FALLBACK_AREA_CODES.get(state, ["555"])
         area = random.choice(area_codes)
-    return f"({area}) {random.randint(200, 999)}-{random.randint(0, 9999):04d}"
+    # Return as a continuous string: area + 7 random digits
+    return f"{area}{random.randint(200, 999)}{random.randint(0, 9999):04d}"
 
 def generate_demographic_profile(gender):
     name = generate_name(gender)
@@ -267,6 +273,16 @@ def run_bare_mode():
     file_name = f"{generated_for.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     df.to_csv(file_name, index=False)
     print(f"\n✅ Generated {num_records} profiles for '{generated_for}'. Saved to {file_name}")
+
+# ---------------- City Queue ----------------
+_city_queue = []
+
+def get_next_city():
+    global _city_queue
+    if not _city_queue:
+        _city_queue = list(CITY_TO_STATE.keys())
+        random.shuffle(_city_queue)
+    return _city_queue.pop()
 
 # ---------------- Entry Point ----------------
 if __name__ == "__main__":

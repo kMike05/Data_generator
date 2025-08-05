@@ -258,7 +258,7 @@ def run_streamlit_app():
         st.success(f"✅ Generated {num_records} profiles for {generated_for}")
         st.dataframe(df, use_container_width=True)
 
-        if file_format == "CSV/TXT":
+        if file_format == "CSV":
             csv_data = convert_to_csv(df)
             st.download_button(
                 "📥 Download as CSV",

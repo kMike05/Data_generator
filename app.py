@@ -226,7 +226,7 @@ def convert_to_txt(profiles_df):
 def run_streamlit_app():
     import streamlit as st
     st.set_page_config(page_title="Evolveme Profiles Generator", page_icon="👥", layout="wide")
-    st.title("Evolveme Profiles Generator")
+    st.title("Demographic Profiles Generator")
     st.markdown("Generate random profiles ")
     st.info("👈 Use the sidebar to configure and generate the profiles")
 
